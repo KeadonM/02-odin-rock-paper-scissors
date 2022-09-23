@@ -5,7 +5,6 @@ function getPlayerChoice() {
     choice = prompt("Choose rock, paper or scissors.");
     choice = choice.toLowerCase();
     choice = choice.replace(/\s+/g, "");
-    console.log(choice);
   }
 
   return choice;
