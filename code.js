@@ -11,3 +11,18 @@ function getComputerChoice() {
       break;
   }
 }
+
+function getRoundWinner(playerSelection, computerSelection) {
+  computerSelection = getComputerChoice();
+  playerSelection = getPlayerChoice();
+
+  if (
+    (playerSelection == "rock" && computerSelection == "scissors") ||
+    (playerSelection == "scissors" && computerSelection == "paper") ||
+    (playerSelection == "paper" && computerSelection == "rock")
+  ) {
+    return `You win! ${playerSelection} beats ${computerSelection}!`;
+  }
+
+  return `You lose... ${computerSelection} beats ${playerSelection}.`;
+}
