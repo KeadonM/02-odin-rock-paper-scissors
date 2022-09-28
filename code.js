@@ -1,3 +1,15 @@
+let score = [0, 0];
+const scoreText = document.querySelector(".score");
+const roundInfoText = document.querySelector(".round-info");
+console.log(roundInfoText);
+const buttons = document.querySelectorAll(".selection-button");
+
+buttons.forEach(b => {
+    b.addEventListener("click", () => {
+        playRound(b.getAttribute("data-selection"), getComputerChoice());
+    });
+});
+
 function getPlayerChoice() {
     let choice;
 
@@ -26,62 +38,69 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         printRoundWinner(2, playerSelection, computerSelection);
-
-        return 2;
+        updateScore(2);
     } else if (
         (playerSelection == "rock" && computerSelection == "scissors") ||
         (playerSelection == "scissors" && computerSelection == "paper") ||
         (playerSelection == "paper" && computerSelection == "rock")
     ) {
         printRoundWinner(0, playerSelection, computerSelection);
-        return 0;
+        updateScore(0);
     }
-
-    printRoundWinner(1, playerSelection, computerSelection);
-    return 1;
+    else {
+        printRoundWinner(1, playerSelection, computerSelection);
+        updateScore(1);
+    }
 }
 
 function printRoundWinner(winner, playerSelection, computerSelection) {
     if (winner === 0) {
-        console.log(
-            `You win this round! ${playerSelection} beats ${computerSelection}!`
-        );
+        roundInfoText.textContent =
+            `You win this round! 
+            ${playerSelection} beats ${computerSelection}!`;
     } else if (winner === 1) {
-        console.log(
-            `You lose this round... ${computerSelection} beats ${playerSelection}.`
-        );
+        roundInfoText.textContent =
+            `You lose this round... 
+            ${computerSelection} beats ${playerSelection}.`;
     } else {
-        console.log(`It's a tie you both chose ${playerSelection}!`);
+        roundInfoText.textContent =
+            `It's a tie you both chose ${playerSelection}!`;
     }
 }
 
 function playGame() {
-    let score = [0, 0];
-
     for (i = 0; i < 5; i++) {
         let roundWinner = playRound(getPlayerChoice(), getComputerChoice());
 
         if (roundWinner === 2) {
             i--;
         } else {
-            score[roundWinner]++;
 
-            if (score[0] === 3) {
-                console.log(endGame(0, score));
-                break;
-            } else if (score[1] === 3) {
-                console.log(endGame(1, score));
-                break;
-            }
+            console.log(i);
         }
-        console.log(i);
+    }
+}
+
+function updateScore(roundWinner) {
+    score[roundWinner]++;
+
+    scoreText.textContent = `${score[0]} | ${score[1]}`
+
+    if (score[0] === 5 || score[1] === 5) {
+        console.log(endGame(0, score));
     }
 }
 
 function endGame(gameWinner, score) {
+    score[0] = 0;
+    score[1] = 0;
+    scoreText.textContent = `${score[0]} | ${score[1]}`
+
     if ((gameWinner === 0)) {
-        return `You won ${score[0]} - ${score[1]}, congrats!`;
+        roundInfoText.textContent =
+            `You won ${score[0]} | ${score[1]}, congrats!`;
     }
 
-    return `You lost ${score[1]} - ${score[0]}, try again!`;
+    roundInfoText.textContent =
+        `You lost ${score[1]} | ${score[0]}, try again!`;
 }
