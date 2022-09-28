@@ -1,0 +1,56 @@
+body {
+  background-color: rgb(51, 69, 85);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.title {
+  color: rgb(223, 223, 223);
+  text-shadow: 1px 1px 10px rgb(19, 19, 19);
+  text-align: center;
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 18px;
+
+  font-size: large;
+  font-weight: bolder;
+  color: rgb(216, 212, 212);
+  text-shadow: 3px 3px 4px black;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.selection-button {
+  margin-top: 18px;
+  width: 100px;
+  height: 50px;
+  transition: 0.07s;
+
+  font-size: larger;
+  font-weight: bolder;
+
+  background-color: rgb(69, 96, 119);
+  color: rgb(184, 183, 183);
+
+  border: solid rgb(175, 175, 175);
+  border-radius: 15px;
+
+  box-shadow: 3px 3px 8px black;
+}
+
+.selection-button:hover {
+  scale: 1.1;
+
+  background-color: rgb(96, 133, 165);
+  color: rgb(255, 255, 255);
+
+  border: solid rgb(221, 221, 221);
+  box-shadow: 0px 3px 16px black;
+}

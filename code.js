@@ -92,10 +92,6 @@ function updateScore(roundWinner) {
 }
 
 function endGame(gameWinner, score) {
-    score[0] = 0;
-    score[1] = 0;
-    scoreText.textContent = `${score[0]} | ${score[1]}`
-
     if ((gameWinner === 0)) {
         roundInfoText.textContent =
             `You won ${score[0]} | ${score[1]}, congrats!`;
@@ -103,4 +99,9 @@ function endGame(gameWinner, score) {
 
     roundInfoText.textContent =
         `You lost ${score[1]} | ${score[0]}, try again!`;
+
+    score[0] = 0;
+    score[1] = 0;
+    scoreText.textContent = `${score[0]} | ${score[1]}`
+
 }
